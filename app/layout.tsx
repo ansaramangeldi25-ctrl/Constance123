@@ -12,9 +12,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const domainKey = process.env.NEXT_PUBLIC_OPENAI_DOMAIN_KEY;
+
   return (
     <html lang="en">
       <head>
+        {domainKey ? (
+          <meta name="openai-domain-key" content={domainKey} />
+        ) : null}
         <Script
           src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
           strategy="beforeInteractive"
